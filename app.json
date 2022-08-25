@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "SagaDiceSimulator",
+    "slug": "SagaDiceSimulator",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "SagaDiceSimulator"
+}

@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Epochs } from "../../context/AppProvider";
 import EpochItem from "./EpochItem";
+
 const epochs = [
   {
     label: Epochs.darkAges,
@@ -27,7 +28,7 @@ const EpochsListScreen = () => {
   return (
     <ScrollView style={styles.epoch}>
       {epochs.map(({ label, isAvailable }) => (
-        <EpochItem label={label} isAvailable={isAvailable} />
+        <EpochItem key={label} label={label} isAvailable={isAvailable} />
       ))}
     </ScrollView>
   );

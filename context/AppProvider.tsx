@@ -1,7 +1,15 @@
 import React from "react";
 
-export enum Fraction {
-  vikings = "vikings",
+export enum Faction {
+  vikings = "Vikings",
+  angloDanish = "Anglo-Danish",
+  normans = "Normans",
+  welsh = "Welsh",
+  angloSaxons = "Anglo-Saxons",
+  bretons = "Bretons",
+  jomsviking = "Jomsviking",
+  scots = "Scots",
+  skraelings = "skraelings",
 }
 
 export enum Epochs {
@@ -11,21 +19,17 @@ export enum Epochs {
   ageOfInvasions = "Age of Invasions",
 }
 
-const defaultApp = {
-  fraction: Fraction.vikings,
-};
-
-export const AppContext = React.createContext<{}>({
-  fraction: Fraction,
+export const AppContext = React.createContext<{ faction: Faction }>({
+  faction: Faction.vikings,
 });
 
-const AppProvider: React.FC<{ children: React.ReactElement }> = ({
-  children,
-}) => {
-  const fraction = Fraction.vikings;
+const AppProvider: React.FC<{
+  children: React.ReactElement;
+}> = ({ children }) => {
+  const faction = Faction.vikings;
 
   return (
-    <AppContext.Provider value={{ fraction }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ faction }}>{children}</AppContext.Provider>
   );
 };
 

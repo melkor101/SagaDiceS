@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AppProvider from "./context/AppProvider";
 import HomeScreen from "./screens/Home";
 import EpochsListScreen from "./screens/EpochsListScreen/index";
+import FactionsListScreen from "./screens/FactionsListScreen/index";
+import BoardScreen from "./screens/BoardScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,17 +18,30 @@ const ProfileScreen = () => {
   );
 };
 
+export enum Routes {
+  home = "Home",
+  profile = "Priofile",
+  epochslist = "EpochsList",
+  factionsList = "FactionsList",
+  board = "Board",
+}
+
 const MyStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="EpochsList">
+      <Stack.Navigator initialRouteName={Routes.epochslist}>
         <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{ title: "Welcome" }}
         />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="EpochsList" component={EpochsListScreen} />
+        <Stack.Screen name={Routes.epochslist} component={EpochsListScreen} />
+        <Stack.Screen name={Routes.board} component={BoardScreen} />
+        <Stack.Screen
+          name={Routes.factionsList}
+          component={FactionsListScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

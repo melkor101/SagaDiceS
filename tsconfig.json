@@ -16,7 +16,7 @@
       "components": ["./components"],
       "containers": ["./containers"],
       "translations": ["./translations"],
-      "screens": ["./screens"],
+      "screens": ["src/screens"],
       "context": ["./context"],
       "assets": ["../assets"],
       "config": ["./config.ts"],

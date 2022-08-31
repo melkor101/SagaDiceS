@@ -3,10 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AppProvider from "./context/AppProvider";
-import HomeScreen from "./screens/Home";
-import EpochsListScreen from "./screens/EpochsListScreen/index";
-import FactionsListScreen from "./screens/FactionsListScreen/index";
-import BoardScreen from "./screens/BoardScreen";
+import HomeScreen from "./src/screens/Home";
+import EpochsListScreen from "./src/screens/EpochsListScreen/index";
+import FactionsListScreen from "./src/screens/FactionsListScreen/index";
+import BoardScreen from "./src/screens/BoardScreen";
 
 const Stack = createNativeStackNavigator();
 

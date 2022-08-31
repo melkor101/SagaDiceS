@@ -8,60 +8,44 @@ import {
   Modal,
   Button,
 } from "react-native";
-import { Epochs, Faction, useApp } from "../../context/AppProvider";
-const boards = {
-  [Faction.vikings]: [{}],
-};
-const renderItem = () => (
-  <View>
-    <Text>text</Text>
-  </View>
-);
+import { ScrollView } from "react-native-gesture-handler";
+import EpochItem from "screens/EpochsListScreen/EpochItem";
+import { useApp } from "../../../context/AppProvider";
+import vikings from "../../data/darkAge/vikings";
+import Order from "./Order";
 
 const BoardScreen = () => {
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const { faction } = useApp();
-  const data = boards[faction];
+  const data = vikings;
 
   return (
-    <View style={styles.container}>
-      {/* <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        style={styles.epoch}
-      /> */}
+    <ScrollView
+      bounces={false}
+      style={styles.container}
+      contentContainerStyle={{ flexGrow: 1 }}
+      showsVerticalScrollIndicator={false}>
+      <Text style={styles.title}>Activation</Text>
+      <View style={styles.wrapper}>
+        {data.activation.map(item => (
+          <Order key={item.label} item={item} />
+        ))}
+      </View>
+      <Text style={styles.title}>SKILLS</Text>
 
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Test Half Modal</Text>
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            setModalVisible(true);
-          }}>
-          <Text style={styles.addButtonText}>Open</Text>
-        </TouchableOpacity>
+      <View style={styles.wrapper}>
+        {data.skills.map(item => (
+          <Order key={item.label} item={item} />
+        ))}
       </View>
 
-      <Button
-        title="Click"
-        onPress={() => {
-          setModalVisible(true);
-        }}></Button>
       <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          // this.closeButtonFunction()
-        }}>
-        <View
-          style={{
-            height: "50%",
-            marginTop: "auto",
-            backgroundColor: "blue",
-          }}>
+        onRequestClose={() => {}}>
+        <View style={styles.modal}>
           <View style={styles.footer}>
             <Text style={styles.headerText}>This is Half Modal</Text>
           </View>
@@ -74,7 +58,7 @@ const BoardScreen = () => {
           </TouchableOpacity>
         </View>
       </Modal>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -85,11 +69,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 24,
   },
-
+  title: { textAlign: "center", fontSize: 16, paddingVertical: 4 },
+  wrapper: { flexDirection: "row", flexWrap: "wrap" },
   container: {
     flex: 1,
-    backgroundColor: "#98B3B7",
-    justifyContent: "center",
+    marginBottom: 60,
   },
   header: {
     flexDirection: "row",
@@ -98,7 +82,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: "black",
     fontSize: 18,
-    padding: 26,
+    padding: 12,
   },
   noteHeader: {
     backgroundColor: "#42f5aa",
@@ -122,6 +106,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#ddd",
     borderTopWidth: 2,
     borderTopColor: "#ddd",
+  },
+  modal: {
+    height: "50%",
+    marginTop: "auto",
+    backgroundColor: "blue",
   },
   addButton: {
     position: "absolute",

@@ -2,25 +2,34 @@ import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Routes } from "../../App";
+import { Routes } from "../../../App";
 import { images } from "../../assets/images";
-
-const FactionItem = ({ label }: { label: string }) => {
+const EpochItem = ({
+  label,
+  isAvailable,
+}: {
+  label: string;
+  isAvailable: boolean;
+}) => {
   const { navigate } = useNavigation();
 
   return (
     <TouchableOpacity
-      onPress={() => navigate(Routes.board)}
-      style={[styles.epoch]}>
+      onPress={() => navigate(Routes.factionsList)}
+      style={[
+        styles.epoch,
+        { backgroundColor: isAvailable ? "#fff" : "#c1c1c1" },
+      ]}>
       <View style={{ flex: 1 }}>
         <Text style={styles.label}>{label}</Text>
+        {!isAvailable && <Text style={styles.status}>comming soon</Text>}
       </View>
       <Image source={images.arrow} style={styles.arrow} />
     </TouchableOpacity>
   );
 };
 
-export default FactionItem;
+export default EpochItem;
 
 const styles = StyleSheet.create({
   label: {

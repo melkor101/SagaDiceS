@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { View, Text, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Epochs } from "../../context/AppProvider";
+import { Epochs } from "../../../context/AppProvider";
 import EpochItem from "./EpochItem";
 
 const epochs = [

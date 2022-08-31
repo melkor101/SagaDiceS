@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { View, Text, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Epochs, Faction } from "../../context/AppProvider";
+import { Epochs, Faction } from "../../../context/AppProvider";
 import FactionItem from "./FactionItem";
 
 const fractions = [

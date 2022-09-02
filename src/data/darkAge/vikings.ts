@@ -7,6 +7,7 @@ export default {
     [Dice.middle]: images.vikingsMiddleIcon,
     [Dice.big]: images.vikingsBigIcon,
   },
+  iconBackgroundColor: "#dbd59c",
   activation: [
     {
       label: "HIRDMAN",
@@ -49,7 +50,7 @@ export default {
     {
       label: "FRIGG",
       rule: "Melee",
-      text: "REmove a fatige from your unit OR gain 3 attack price",
+      text: "Remove a fatige from your unit OR gain 3 attack price",
       price: [Dice.middle, Dice.big],
     },
     {

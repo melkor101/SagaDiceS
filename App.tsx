@@ -2,11 +2,12 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AppProvider from "./context/AppProvider";
+import AppProvider from "./src/context/AppProvider";
 import HomeScreen from "./src/screens/Home";
 import EpochsListScreen from "./src/screens/EpochsListScreen/index";
 import FactionsListScreen from "./src/screens/FactionsListScreen/index";
 import BoardScreen from "./src/screens/BoardScreen";
+import { Routes } from "./src/types/Routes";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,15 +19,7 @@ const ProfileScreen = () => {
   );
 };
 
-export enum Routes {
-  home = "Home",
-  profile = "Priofile",
-  epochslist = "EpochsList",
-  factionsList = "FactionsList",
-  board = "Board",
-}
-
-const MyStack = () => {
+const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={Routes.epochslist}>
@@ -50,7 +43,7 @@ const MyStack = () => {
 export default function App() {
   return (
     <AppProvider>
-      <MyStack />
+      <AppNavigator />
     </AppProvider>
   );
 }

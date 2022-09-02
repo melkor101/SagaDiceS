@@ -17,7 +17,7 @@
       "containers": ["./containers"],
       "translations": ["./translations"],
       "screens": ["src/screens"],
-      "context": ["./context"],
+      "context": ["src/context"],
       "assets": ["../assets"],
       "config": ["./config.ts"],
       "theming": ["./theming.tsx"],

@@ -1,34 +1,42 @@
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Text, StyleSheet } from "react-native";
 import * as React from "react";
 
-import { View, Text, StyleSheet, Image } from "react-native";
-
-import { images } from "../../assets/images";
+import PriceIcons, { OrderItemType } from "./PriceIcons";
+import { useApp } from "../../context/AppProvider";
+import vikings from "../../data/darkAge/vikings";
 
 type OrderType = {
-  item: {
-    label: string;
-    text: string;
-    rule: string;
-    price: string[];
-  };
+  item: OrderItemType;
+  onClick: (label: string) => void;
 };
+const color = vikings.iconBackgroundColor;
 
-const Order = ({ item }: OrderType) => (
-  <View style={styles.card}>
-    <View style={styles.iconContainer}>
-      {item.price.map(image => (
-        <Image source={images.vikingsBigIcon} style={styles.icons} />
-      ))}
-    </View>
-    <Text style={styles.label}>{item.label}</Text>
-    <Text style={styles.order} numberOfLines={2}>
-      {item.rule}
-    </Text>
-    <Text style={styles.text} numberOfLines={3}>
-      {item.text}
-    </Text>
-  </View>
-);
+const Order = ({ item, onClick }: OrderType) => {
+  const { availableDices } = useApp();
+  const isAvailable = item.plus
+    ? availableDices.some(d => d === item.price[0]) &&
+      availableDices.some(d => d === item.price[1])
+    : item.price.some(p => availableDices.find(d => d === p));
+  console.log(item.label, isAvailable);
+  console.log(item.label, isAvailable);
+
+  return (
+    <TouchableOpacity
+      onPress={() => onClick(item.label)}
+      style={[styles.card, , isAvailable ? styles.shine : {}]}>
+      <PriceIcons item={item} />
+
+      <Text style={styles.label}>{item.label}</Text>
+      <Text style={styles.order} numberOfLines={2}>
+        {item.rule}
+      </Text>
+      <Text style={styles.text} numberOfLines={3}>
+        {item.text}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 export default Order;
 
@@ -37,16 +45,15 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 24,
   },
+  shine: {
+    shadowColor: "blue",
+
+    shadowOpacity: 0.8,
+    shadowRadius: 6,
+    elevation: 5,
+  },
   label: { fontSize: 10, textAlign: "center" },
   text: { fontSize: 10, textAlign: "center" },
-  iconContainer: { flexDirection: "row", marginBottom: 6 },
-  icons: {
-    width: 20,
-    height: 20,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    marginHorizontal: 4,
-  },
   order: {
     fontSize: 8,
     textAlign: "center",
@@ -54,6 +61,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   card: {
+    backgroundColor: "#fff",
     alignItems: "center",
     marginHorizontal: 10,
     marginVertical: 10,

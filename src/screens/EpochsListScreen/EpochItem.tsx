@@ -1,9 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
-
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Routes } from "../../../App";
+
+import { Routes } from "../../types/Routes";
 import { images } from "../../assets/images";
+
 const EpochItem = ({
   label,
   isAvailable,

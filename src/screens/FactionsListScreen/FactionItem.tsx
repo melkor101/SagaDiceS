@@ -10,7 +10,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { Routes } from "../../../App";
+import { Routes } from "../../types/Routes";
 import { images } from "../../assets/images";
 
 const cardWidth = Dimensions.get("screen").width;
